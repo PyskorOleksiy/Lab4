@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>UPL Tournament Table</h1>
+
+<table cellspacing="15">
+  <thead>
+    <tr>
+      <th>Place</th>
+      <th>Club</th>
+      <th>Points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tournaments.each do |tournament| %>
+      <tr>
+        <td><%= tournament.place %></td>
+        <td><%= tournament.club %></td>
+        <td><%= tournament.points %></td>
+        <td><%= link_to 'Show', tournament %></td>
+        <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
+        <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Club', new_tournament_path %>
+<%= link_to 'Home page', root_path %>

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  stadium: MyString
+  total_market_value: 1.5
+  tournament_position: 1
+  average_age: 1.5
+  titles: 1
+  country: MyString
+
+two:
+  name: MyString
+  stadium: MyString
+  total_market_value: 1.5
+  tournament_position: 1
+  average_age: 1.5
+  titles: 1
+  country: MyString

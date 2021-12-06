@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Coach</h1>
+
+<% if (@club.coach) %>
+  <p>
+    <strong>Name:</strong>
+      <%= @club.coach.name %>
+  </p>
+  
+  <p>
+    <strong>Last club:</strong>
+      <%= @club.coach.last_club %>
+  </p>
+
+  <p>
+    <strong>Age:</strong>
+      <%= @club.coach.age %>
+  </p>
+
+  <p>
+    <strong>Country:</strong>
+      <%= @club.coach.country %>
+  </p>
+
+  <p>
+    <strong>Appointed:</strong>
+      <%= @club.coach.appointed %>
+  </p>
+
+  <p>
+    <strong>Contract until:</strong>
+      <%= @club.coach.contract_until %>
+  </p>
+
+  <p>
+    <strong>Prefer. formation:</strong>
+      <%= @club.coach.preferred_formation %>
+  </p>
+
+  <p>
+    <strong>Avrg. coach term:</strong>
+      <%= number_with_precision(@club.coach.avrg_coach_term, precision: 2) %>
+  </p>
+  
+  <p>
+    <strong>Achievements:</strong>
+  </p>
+  <textarea rows="10" cols="45" readonly><%= @club.coach.achievements %></textarea>
+  
+  <br>
+<% end %>
+
+<p>
+  <%= link_to 'Back', club_path(@club) %>
+  <%= link_to 'Home Page', root_path %>
+</p>

@@ -1,0 +1,91 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @tournament.place %>
+</p>
+
+<p>
+  <strong>Club:</strong>
+  <%= @tournament.club %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @tournament.points %>
+</p>
+
+<%= link_to 'Edit', edit_tournament_path(@tournament) %>
+<%= link_to 'Back', tournaments_path %>
+
+<div class="container-games">
+  <div class="games">
+    <h2>Home games</h2>
+
+    <table cellspacing="12">
+      <thead>
+        <tr>
+          <th>Tour</th>
+          <th>Match date</th>
+          <th>Home team</th>
+          <th>Result</th>
+          <th>Away team</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @tournament.homes.each do |home| %>
+          <tr>
+            <td><%= home.tour %></td>
+            <td><%= home.match_date.strftime("%d.%m.%Y %H:%M") %></td>
+            <td><%= home.home_team %></td>
+            <td><%= home.result %></td>
+            <td><%= home.away_team %></td>
+            <td><a href="/tournaments/<%= @tournament.id %>/homes/<%= home.id %>">Show</a></td>
+            <td><a href="/tournaments/<%= @tournament.id %>/homes/<%= home.id %>/edit">Edit</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New home match', new_tournament_home_path(@tournament) %> 
+  </div>
+
+  <div class="games">
+    <h2>Away games</h2>
+
+    <table cellspacing="12">
+      <thead>
+        <tr>
+          <th>Tour</th>
+          <th>Match date</th>
+          <th>Home team</th>
+          <th>Result</th>
+          <th>Away team</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @tournament.aways.each do |away| %>
+          <tr>
+            <td><%= away.tour %></td>
+            <td><%= away.match_date.strftime("%d.%m.%Y %H:%M") %></td>
+            <td><%= away.home_team %></td>
+            <td><%= away.result %></td>
+            <td><%= away.away_team %></td>
+            <td><a href="/tournaments/<%= @tournament.id %>/aways/<%= away.id %>">Show</a></td>
+            <td><a href="/tournaments/<%= @tournament.id %>/aways/<%= away.id %>/edit">Edit</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New home match', new_tournament_away_path(@tournament) %>
+  </div>
+  <h3>!!!You can destroy the match in the "Show" section</h3>
+</div>
+
+
+
+
+

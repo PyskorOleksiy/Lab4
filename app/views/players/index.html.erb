@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Players</h1>
+
+<table cellspacing="15">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Number</th>
+      <th>Age</th>
+      <th>Country</th>
+      <th>Contract until</th>
+      <th>Market value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @club.total_market_value = 0 %>
+    <% @club.average_age = 0 %>
+    <% @club.players.each do |player| %>
+      <tr>
+        <td><%= player.id %></td>
+        <td><%= player.name %></td>
+        <td><%= player.position %></td>
+        <td><%= player.number %></td>
+        <td><%= player.age %></td>
+        <td><%= player.country %></td>
+        <td><%= player.contract_until %></td>
+        <td>€<%= number_with_precision(player.market_value, precision: 2) %><%= player.cost_type %></td>
+        <td><%= link_to 'Show', [player.club, player] %></td>
+        <% @club.total_market_value += player.market_value %></td>
+        <% @club.average_age += player.age %>
+      </tr>
+    <% end %>
+    <% @club.average_age /= @club.players.size %>
+    <% @club.save %>
+  </tbody>
+</table>
+
+<br>
+
+<h3>!!!You can edit a player in the "Show" section</h3>
+<%= link_to 'Back', club_path(@club) %>
+<%= link_to 'Home page', root_path %>

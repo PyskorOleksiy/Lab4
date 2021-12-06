@@ -1,0 +1,72 @@
+<% require 'faker'
+%>
+<% require 'populator' 
+%>
+
+
+<h1>Transfermark database about professional football players, coaches and clubs</h1>
+<br>
+
+<p id="notice"><%= notice %></p>
+
+<% Faker::Sports::Football.unique.clear %>
+<% if (@clubs.size < 6) %>  
+  <% Club.populate(6) do |cl| %>
+    <% cl.name = Faker::Sports::Football.unique.team %>
+    <% cl.tournament_position = Faker::Number.between(from: 1, to: 10) %>
+    <% cl.titles = Faker::Number.between(from: 5, to: 60) %>
+    <% Player.populate(5) do |pl| %>
+      <% pl.club_id = cl.id %>
+      <% pl.name = Faker::Sports::Football.unique.player %>
+      <% pl.number = Faker::Number.between(from: 1, to: 99) %>
+      <% pl.age = Faker::Number.between(from: 20, to: 35) %> 
+      <% pl.market_value = Faker::Commerce.price(range: 50.0..150.0) %>
+    <% end %>
+    <% Coach.populate(1) do |c| %>
+      <% c.club_id = cl.id %>
+      <% c.name = Faker::Sports::Football.unique.coach %>
+      <% c.age = Faker::Number.between(from: 35, to: 70) %> 
+      <% c.avrg_coach_term = Faker::Number.between(from: 1.00, to: 5.00) %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>Clubs</h1>
+
+<table cellspacing="15">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Stadium</th>
+      <th>Total market value</th>
+      <th>Tournament position</th>
+      <th>Average age</th>
+      <th>Titles</th>
+      <th>Country</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clubs.each do |club| %>
+      <tr>
+        <td><%= club.id %></td>
+        <td><%= club.name %></td>
+        <td><%= club.stadium %></td>
+        <td>€<%= number_with_precision(club.total_market_value, precision: 2) %><%= club.cost_type %></td>
+        <td><%= club.tournament_position %></td>
+        <td><%= number_with_precision(club.average_age, precision: 1) %></td>
+        <td><%= club.titles %></td>
+        <td><%= club.country %></td>
+        <td><%= link_to 'Show', club %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Table Players', clubs_all_players_path %>
+<%= link_to 'Table Coaches', clubs_coaches_path %>
+<%= link_to 'Table UPL(Ukrainian Premier League)', tournaments_path %> 

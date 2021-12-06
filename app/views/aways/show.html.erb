@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tour:</strong>
+  <%= @away.tour %>
+</p>
+
+<p>
+  <strong>Match date:</strong>
+  <%= @away.match_date %>
+</p>
+
+<p>
+  <strong>Home team:</strong>
+  <%= @away.home_team %>
+</p>
+
+<p>
+  <strong>Result:</strong>
+  <%= @away.result %>
+</p>
+
+<p>
+  <strong>Away team:</strong>
+  <%= @away.away_team %>
+</p>
+
+
+<%= link_to 'Destroy', tournament_away_path(@tournament), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', tournament_path(@tournament) %>

@@ -1,0 +1,47 @@
+<p>
+  <strong>Id:</strong>
+  <%= @club.id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @club.name %>
+</p>
+
+<p>
+  <strong>Stadium:</strong>
+  <%= @club.stadium %>
+</p>
+
+<p>
+  <strong>Total market value €:</strong>
+  <%= number_with_precision(@club.total_market_value, precision: 2) %><%= @club.cost_type %>
+</p>
+
+<p>
+  <strong>Tournament position:</strong>
+  <%= @club.tournament_position %>
+</p>
+
+<p>
+  <strong>Average age:</strong>
+  <%= number_with_precision(@club.average_age, precision: 1) %>
+</p>
+
+<p>
+  <strong>Titles:</strong>
+  <%= @club.titles %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @club.country %>
+</p>
+
+<% $club_id = @club.id %>
+
+<br>
+<%= link_to 'Team composition', club_players_path(@club) %>
+<%= link_to 'Coach', club_coach_path(@club) %>
+<p></p>
+<%= link_to 'Back', clubs_path %>

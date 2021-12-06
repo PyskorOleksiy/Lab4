@@ -1,0 +1,32 @@
+<%= form_with(model: tournament) do |form| %>
+  <% if tournament.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
+
+      <ul>
+        <% tournament.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :place %>
+    <%= form.number_field :place %>
+  </div>
+
+  <div class="field">
+    <%= form.label :club %>
+    <%= form.text_field :club %>
+  </div>
+
+  <div class="field">
+    <%= form.label :points %>
+    <%= form.number_field :points %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
